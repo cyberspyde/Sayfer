@@ -1,0 +1,186 @@
+{
+  "intents": [
+    {
+      "tag": "salomlashish",
+      "patterns": [
+        "Salom",
+        "Qalaysan",
+        "Kimdir bormi?",
+        "Assalom alekum",
+        "Xayrli kun"
+      ],
+      "responses": [
+        "Salom",
+        "Salom, Sayfer dasturiga xush kelibsiz!",
+        "Salom, qanday yordam bera olaman?",
+        "Salom, sizga qanday yordam berishim mumkin?",
+        "Assalomu alaykum"
+      ]
+    },
+    {
+      "tag": "xayrlashish",
+      "patterns": ["Xayr", "Ko'rishguncha", "Sog' bo'lgin"],
+      "responses": [
+        "Ko'rishguncha, dasturdan foydalanganingiz uchun rahmat",
+        "Kuningiz xayrli o'tsin!",
+        "Xayr!, yana keling!"
+      ]
+    },
+    {
+      "tag": "rahmat",
+      "patterns": ["Rahmat", "Katta rahmat", "Bu foydali"],
+      "responses": ["Yordam berganimdan xursandman!", "Xohlagan paytingizda murajaat qilishingiz mumkin!", "Jonim bilan!"]
+    },
+    {
+      "tag": "kulgu",
+      "patterns": [
+        "Menga hazil aytib ber",
+        "Menga kulguli narsa aytib ber",
+        "Biror hazil bilasanmi?",
+        "Menga hazil ayt"
+      ],
+      "responses": [
+        "Bir otaxon avtobusda bitta negrni ko‘rib qolibdi va so‘rabdi, Bolam Mirzacho‘ldanmisan? Yo‘q otaxon, men negrman, Afrikadanman. Sal o‘tib chol yana so‘rabdi: Bolam Mirzacho‘ldanmisan? Negrman dedim-ku ota Afrikalikman. Haaa, endi bolam gap yo‘g‘ida gapda... 15 minutlar yurgandan keyin, chol yana so‘rabdi: Bolam Mirzacho‘ldanmisan?, - desa negrni jahli chikib: Ha Mirzacho‘ldanman nima edi?, - desa Haligi otaxon: Unda nega negrlarga o‘xshaysan?, - dermish.",
+        "Poyezd. Kupeda go‘zal qiz va bir yigit o‘tiribdi. Yigit qizga judayam gapirgisi kelibdi va, Kechirasiz siz ham shu poyezdda ketyapsizmi, dermish.",
+        "Bir kishi, boshqa shahardagi oshnasinikiga 2-3 kunga mehmonga kelibdi. Oshni yeb bo‘lishgach, xaligi mehmonni juda qovun yegisi kelibdi. Mezbon ham negadir qovun olib chiqmabdi. Toqati toq bo‘lgan mehmon uy egasiga debdi: Oshna, qovun yegandan keyin qayerda yotaman?"
+      ]
+    },
+    {
+      "tag": "o'rganish",
+      "patterns": [
+        "O'rganish vaqti bo'ldi",
+        "Senga dars o'taman",
+        "Sayfer senga yangi narsalar o'rgataman",
+        "Sanga biror yangi narsa o'rgatib qo'ymoqchiman"
+      ],
+      "responses": [
+        "o'rganish funksiyasini yoqaman",
+        "Ajoyib, yangi narsalar o'rganish menga yoqadi",
+        "o'rganishni boshlaymiz"
+      ]
+    },
+    {
+      "tag" :"ism",
+      "patterns": [
+        "Isming seni?",
+        "Ismingni aytchi?",
+        "Sani ismin?"   
+      ],
+      "responses": [
+        "Mening ismim Sayfer, suniy intellektual yordamchingiz!",
+        "Mening ismim Sayfer, sizning raqamli yordamchingiz!"
+      ]
+    },
+    {
+      "tag": "yaratuvchi",
+      "patterns": [
+        "Sening yaratuvching kim?",
+        "Seni kim yaratgan?",
+        "Sani yaratuvching kim?",
+        "Sani kim yaratgan?",
+        "Kim yaratgan sani?",
+        "Kim yaratgan seni?",
+        "Sani kim va qachon yaratgan?",
+        "Seni kim qachon yaratgan?",
+        "Kim yaratgan seni?",
+        "Kim sani yaratgan?",
+        "San qachon yaralgansan?",
+        "Sayfer kim tomonidan qachon yaratilgan?"
+      ],
+      "responses": [
+        "Sayfer dasturi yaratuvchisi, Sayberspayde niki tagidagi inson 2022 chi yil fevral oyida yaratgan, kimligini bilmoqchi bo'lsangiz google orqali ma'lumot olishingiz mumkim."
+      ]
+    },
+    {
+      "tag": "kalkulyator",
+      "patterns": [
+        "Kalkulyatorni och",
+        "Kalkulyatorni ochib ber"
+      ],
+      "responses": [
+        "Kalkulyator ni ochaman",
+        "Kalkulyator ni ochyabman",
+        "Kalkulyator dasturini ochaman"
+      ]
+    },
+    {
+      "tag": "chrome",
+      "patterns": [
+        "Xrom dasturini ochib ber",
+        "Xrom ni ochib ber",
+        "Xrom dasturini och",
+        "Xrom ni och"
+      ],
+      "responses": [
+        "Xrom dasturini ochaman",
+        "Xrom dasturini ochyabman"
+      ]
+    },
+    {
+      "tag": "telegram",
+      "patterns": [
+        "Telegram dasturini ochib ber",
+        "Telegramni ochib ber",
+        "Telegram ni ochib ber",
+        "Telegram dasturini och",
+        "Telegram ni och"
+      ],
+      "responses": [
+        "Telegram dasturini ochaman",
+        "Telegram ni ochyabman",
+        "Telegram dasturini ochyabman"
+      ]
+    },
+    {
+      "tag": "takeKnowledgeNotes",
+      "patterns": [
+        "Ilmiy ma'lumotlarni eslab qol",
+        "Ilmiy ma'lumotni saqlab qo'y",
+        "Ilmiy xabarni eslab qol",
+        "Ilmiy xabarni saqlab qo'y"
+      ],
+      "responses" : [
+        "Ilmiy ma'lumotlarni saqlayman"
+      ]
+    },
+    {
+      "tag": "takeGeneralNotes",
+      "patterns": [
+        "Umumiy ma'lumotlarni eslab qol",
+        "Umumiy ma'lumotni saqlab qo'y",
+        "Umumiy ma'lumotni eslab qol",
+        "Umumiy xabarni saqlab qo'y",
+        "Umumiy xabarni eslab qol"
+      ],
+      "responses": [
+        "Umumiy ma'lumotlarni saqlayman"
+      ]
+    },
+    {
+      "tag": "readKnowledgeNotes",
+      "patterns": [
+        "Bugungi ilmiy ma'lumotlarni aytib ber",
+        "Bugungi ilmiy ma'lumotlar",
+        "Ilmiy ma'lumotlarni aytib ber",
+        "Bugungi ilmiy xabarlarni aytib ber",
+        "Bugungi ilmiy xabarlar"
+      ],
+      "responses": [
+        "Bugungi kiritilgan ilmiy ma'lumotlarni o'qib eshittiraman"
+      ]
+    },
+    {
+      "tag": "readGeneralNotes",
+      "patterns": [
+        "Bugungi umumiy ma'lumotlarni aytib ber",
+        "Umumiy ma'lumotlarni aytib ber",
+        "Umumiy xabarlarni aytib ber",
+        "Bugungi umumiy xabarlar",
+        "Bugungi umimiiy ma'lumotlar"
+      ],
+      "responses": [
+        "Bugungi kiritilgan umumiy ma'lumotlarni o'qib eshittiraman"
+      ]
+    }
+  ]
+}
