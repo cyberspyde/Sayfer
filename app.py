@@ -1,12 +1,18 @@
 from sayfer import *
+import openai
 
 key_file = open('../key')
 key_data = json.load(key_file)
 
 KEY_FILE = key_data['key_file']
 LOCATION = key_data['location']
-
+openai.api_key = key_data['openapi_key']
 key_file.close()
+
+start_sequence = "\nAI:"
+restart_sequence = "\nHuman: "
+
+session_prompt = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly.\n\nHuman: Hello, who are you?\nAI: I am an AI created by OpenAI. How can I help you today?\nHuman: "
 
 speech_key, service_region = KEY_FILE, LOCATION
 speech_config_stt = speechsdk.SpeechConfig(subscription=speech_key, region=service_region)
@@ -27,22 +33,50 @@ robot_name = conf_data['robot_name']
 
 conf_file.close()
 
+generalNotes = {
+      "notes" : [],
+      "dates" : []
+}
+
+knowledgeNotes = {
+      "notes" : [],
+      "dates" : []
+}
+
+#Loading existing data
+if os.path.isfile('knowledgeNotes.json'):
+    knowledgeNotesRaw = open('knowledgeNotes.json')
+    knowledgeNotes = json.load(knowledgeNotesRaw)
+    knowledgeNotesRaw.close()
+
+if os.path.isfile('generalNotes.json'):
+    generalNotesRaw = open('generalNotes.json')
+    generalNotes = json.load(generalNotesRaw)
+    generalNotesRaw.close()
+
+
 
 def run_app():
     if(voice_activation == 0):
 
         wikipedia.set_lang("uz")
 
-        query = speech_recognizer.recognize_once_async().get().text
+        query = drop_characters(speech_recognizer.recognize_once_async().get().text).lower()
         answer = day_filter(year_filter(get_response(query)))
         print(query)
 
         get_response(query)
 
         #Wikipedia knowledge base inclusion (Wikipedia dan qidirish)
-        if "haqida" in query and "sayfer" in query:
+        if "haqida" in query and "sayfer" in query.split():
             try:
-                wiki_question = query.split(' haqida', 1)[0]
+                words = query.split()
+                for word in words:
+                    if word == "sayfer":
+                        words.remove(word)
+
+                joint_query = ' '.join(words)
+                wiki_question = joint_query.split(' haqida', 1)[0]
                 suggested_wiki_answer = wikipedia.suggest(f"{wiki_question}")             
 
                 # if (suggested_wiki_answer is not None):
@@ -55,48 +89,35 @@ def run_app():
                     wiki_answer = wikipedia.summary(s, sentences=3)
 
                 speech_synthesizer.speak_text_async(day_filter(year_filter(wiki_answer))).get()
+                return 1
             except Exception as e:
                 print(e)
 
 
         #Dasturlarni ochish
-        if("Xrom" in answer and "sayfer" in query):
+        if("Xrom" in answer and "sayfer" in query.lower()):
+            speech_synthesizer.speak_text_async(answer)
             call(["chrome.exe"])
+            return 1
         elif("Kalkulyator" in answer and "sayfer" in query.lower()):
+            speech_synthesizer.speak_text_async(answer)
             call(["calc.exe"])
-        elif("Telegram" in answer):
+            return 1
+        elif("Telegram" in answer and "sayfer" in query.lower()):
+            speech_synthesizer.speak_text_async(answer)
             subprocess.Popen("c:\\Users\\Peter\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe")
+            return 1
 
         #Soatni so'rash
         if "soat" in query.lower() and "sayfer" in query.lower().split():
             currentTime = get_current_time()
             speech_synthesizer.speak_text_async(currentTime).get()
-
+            return 1
         #TakeNotes malumotlarni saqlab qolish
-        generalNotes = {
-              "notes" : [],
-              "dates" : []
-        }
 
-        knowledgeNotes = {
-              "notes" : [],
-              "dates" : []
-        }
-
-        if answer == "Ilmiy ma'lumotlarni saqlayman":
+        if answer == "Ilmiy ma'lumotlarni saqlayman" and "sayfer" in query.lower().split():
             note = query.split("eslab qol")[0]
             print(note)
-
-            #Loading existing data
-            if os.path.isfile('knowledgeNotes.json'):
-                knowledgeNotesRaw = open('knowledgeNotes.json')
-                knowledgeNotes = json.load(knowledgeNotesRaw)
-                knowledgeNotesRaw.close()
-
-            if os.path.isfile('generalNotes.json'):
-                generalNotesRaw = open('generalNotes.json')
-                generalNotes = json.load(generalNotesRaw)
-                generalNotesRaw.close()
 
             if("umumiy" in query):
                 note = query.split("umumiy")[0]
@@ -130,12 +151,6 @@ def run_app():
                   speech_synthesizer.speak_text_async("Bunday ma'lumotlar ba'zasi topilmadi, saqlashni bekor qilaman").get()
 
 
-            # if os.path.isfile('generalNotes.json'):
-            #     os.remove('generalNotes.json')
-
-            # if os.path.isfile('knowledgeNotes.json'):
-            #     os.remove('knowledgeNotes.json')
-
             k = open('knowledgeNotes.json', 'w')
             k.write(json.dumps(knowledgeNotes))
             k.close()
@@ -143,10 +158,10 @@ def run_app():
             g = open('generalNotes.json', 'w')
             g.write(json.dumps(generalNotes))
             g.close()
+            return 1
 
 
-
-    #ReadNotes Ma'lumotlarni o'qish
+        #ReadNotes Ma'lumotlarni o'qish
         if answer == "Bugungi kiritilgan ilmiy ma'lumotlarni o'qib eshittiraman":
             if(os.path.isfile('knowledgeNotes.json')):
                 knowledgeNotesRaw = open('knowledgeNotes.json')
@@ -182,7 +197,7 @@ def run_app():
                 speech_synthesizer.speak_text_async("Bugungi kiritilgan ilmiy ma'lumotlarni o'qib eshittiraman")
                 for note in speakingKnowledgeNotes:
                     speech_synthesizer.speak_text_async(note)
-
+            return 1
         if answer == "Bugungi kiritilgan umumiy ma'lumotlarni o'qib eshittiraman":
 
             if(os.path.isfile('generalNotes.json')):  
@@ -220,14 +235,8 @@ def run_app():
                     speech_synthesizer.speak_text_async(note)
 
 
-
-           
-        answer = day_filter(year_filter(answer))
-        speech_synthesizer.speak_text_async(answer).get()
-            
-        # else:
-        #     speech_synthesizer.speak_text_async("tushunmadim").get()
-
+            return 1
+    
     elif(voice_activation == 1): 
         wikipedia.set_lang("uz")
         sayfer_status = "offline" 
@@ -248,14 +257,11 @@ def run_app():
             get_response(query)
 
             #Wikipedia knowledge base inclusion (Wikipedia dan qidirish)
-            if ("haqida" and "sayfer" in query):
+            if ("haqida" in query):
                 sayfer_status = "offline"
                 try:
                     wiki_question = query.split(' haqida', 1)[0]
                     suggested_wiki_answer = wikipedia.suggest(f"{wiki_question}")             
-
-                    # if (suggested_wiki_answer is not None):
-                    #     wiki_answer = random.choice(suggested_wiki_answer.options)
 
                     try:
                         speech_synthesizer.speak_text_async(f"{wiki_question} haqida qidiryabman").get()
@@ -266,7 +272,7 @@ def run_app():
 
                     speech_synthesizer.speak_text_async(day_filter(year_filter(wiki_answer))).get()
                     
-
+                    return 1
                 except Exception as e:
                     print(e)
 
@@ -274,12 +280,15 @@ def run_app():
             if("Xrom" in answer):
                 call(["chrome.exe"])
                 sayfer_status = "offline"
+                return 1
             elif("Kalkulyator" in answer):
                 call(["calc.exe"])
                 sayfer_status = "offline"
+                return 1
             elif("Telegram" in answer):
                 subprocess.Popen("c:\\Users\\Peter\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe")
                 sayfer_status = "offline"
+                return 1
 
             #Soatni so'rash
             sayfer_status = "online"
@@ -287,13 +296,7 @@ def run_app():
                 currentTime = get_current_time()
                 speech_synthesizer.speak_text_async(currentTime).get()
                 sayfer_status = "offline"
-
-
-            #Umumiy va ilmiy ma'lumotlarni saqlash
-            sayfer_status = takeNotes(query)
-
-            #Umumiy va ilmiy ma'lumotlarni o'qib eshittirish
-            sayfer_status = readNotes(answer)
+                return 1
 
             if(sayfer_status != "offline"):
                 #Buyruq aniqlanmagan holatda
@@ -303,9 +306,42 @@ def run_app():
                 else:
                     answer = day_filter(year_filter(answer))
                     speech_synthesizer.speak_text_async(answer).get()
+                    return 1
+    return 0
+def run_gpt3(question, chat_log=None):
+  global session_prompt
+  if chat_log is None: 
+    chat_log = session_prompt 
+
+  prompt_text = f'{chat_log}{restart_sequence}: {question}{start_sequence}:'
+  
+  response = openai.Completion.create(
+    engine="text-davinci-002",
+    prompt=prompt_text,
+    temperature=0.9,
+    max_tokens=150,
+    top_p=1,
+    frequency_penalty=0,
+    presence_penalty=0.6,
+    stop=[" Human:", " AI:"]
+    #stop=["\n"],
+  )
+  story = response['choices'][0].text
+
+  session_prompt = f'{chat_log}{restart_sequence}: {question}{start_sequence}: {story}:'
+  return str(story)
 
 
 if __name__ == "__main__":
-
     while True:
-        run_app()
+        #run_app()
+        #if run_app() != 1:
+        activation = speech_recognizer.recognize_once_async().get().text.lower()
+        if('sayfer' in activation):
+            playsound('audio.mp3', block=False)
+            qinUz = speech_recognizer.recognize_once_async().get().text.lower()
+            qinEn = uzbek_to_english(qinUz)
+            aninEn = run_gpt3(qinEn)
+            aninUz = english_to_uzbek(aninEn)
+
+            print(aninUz)

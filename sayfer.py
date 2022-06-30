@@ -1,5 +1,5 @@
 from datetime import datetime
-import random, string, subprocess, wikipedia, os, requests, threading, json
+import random, string, subprocess, wikipedia, os, requests, threading, json, uuid
 from subprocess import call
 import azure.cognitiveservices.speech as speechsdk
 from chat import get_response, bot_name
@@ -8,6 +8,16 @@ from tkinter import *
 import numpy as np
 
 mydate = datetime.today().strftime("%y-%m-%d")
+
+key_file = open('../key')
+key_data = json.load(key_file)
+
+resource_key = key_data['resource_key']
+region = key_data['region']
+endpoint = key_data['endpoint']
+path = key_data['path']
+
+key_file.close()
 
 def english_to_uzbek(text):
     params = '&from=en&to=uz'
@@ -54,7 +64,7 @@ def uzbek_to_english(text):
 
 def drop_characters(text):
     a = text
-    b = "!@#$()-_=+%&.,\""
+    b = "!@#$()-_=+%&.,\" "
     
     for char in b:
         a = a.replace(char, " ")    
@@ -121,8 +131,6 @@ def day_filter(answer):
     for t in range(0, len(digits2)):
         days_in_text2 = day_first_values2[t]
         joint_days2[digits2[t]] = days_in_text2 
-
-    print(day_first_values2)
 
     for _ in range(0, len(digits)):
         for t in answer.split():

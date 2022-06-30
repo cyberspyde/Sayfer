@@ -94,8 +94,8 @@
     {
       "tag": "kalkulyator",
       "patterns": [
-        "Kalkulyatorni och",
-        "Kalkulyatorni ochib ber"
+        "Kalkulyator ni och",
+        "Kalkulyator ni ochib ber"
       ],
       "responses": [
         "Kalkulyator ni ochaman",
@@ -120,10 +120,9 @@
       "tag": "telegram",
       "patterns": [
         "Telegram dasturini ochib ber",
-        "Telegramni ochib ber",
         "Telegram ni ochib ber",
-        "Telegram dasturini och",
-        "Telegram ni och"
+        "Telegram ni och",
+        "Telegram dasturini och"
       ],
       "responses": [
         "Telegram dasturini ochaman",
