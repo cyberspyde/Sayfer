@@ -1,34 +1,49 @@
 # SAYFER AI
 
-Assalom alaykum, sayfer dasturi o'zbek tilidagi ovozli sun'iy intellektual yordamchi hisoblanadi. Dastur ochiq kodli (open-source), dasturda foydalanilgan kutubxonalar (API yoki library) pullik, ulardan foydalanish uchun xizmatni taklif qilgan kompaniyalarga karta ulash ishlatilgan resurslar uchun to'lov qilish talab qilinadi. 
-
-Foydalanilgan API lar ro'yxati
-
-* [Microsoft](https://microsoft.com) DeepSpeech, Translation, Speech services, TTS, STT
-* [OPEN AI](https://openai.com) GPT3, Davinci 002 model
-* [Wikipedia](https://wikipedia.com)
+Assalom alaykum, sayfer dasturi o'zbek tilidagi ovozli sun'iy intellektual yordamchi hisoblanadi. Dastur ochiq kodli (open-source), dasturda foydalanilgan ba'zi kutubxonalar (API yoki library) pullik, ulardan foydalanish uchun xizmatni taklif qilgan ba'zi kompaniyalarga karta ulash ishlatilgan resurslar uchun to'lov qilish talab qilinadi, albatta pullik xizmatlar o'chirib qo'yilib dasturni belgilangan resurslardan o'tkazmagan holatda tekin foydalanish mumkin).
 
 ## Sayfer dasturi talablari:
 
- - Python3.9 yoki undan yuqori
- - 2 GB minimal xotira
+ - Python3.10 yoki undan yuqori
+ - 2 GB minimal operativ xotira (RAM)
  - Audio I/O
+ - 4 GB + xotira (SSD/HDD)
+ - CPU (ahamiyatsiz)
 
+## Dasturni ishga tushirish
 
- **Sayfer dasturini o'rnatish uchun quyidagi amallarni ketma ketlikda bajaring!**
+     # Virtualenv .venv
+     
+     # .venv\Scripts\activate
 
-     git clone https://github.com/cyberspyde/Sayfer.git
+     # git clone https://github.com/cyberspyde/Sayfer.git
    
-     unzip Sayfer.zip
+     # unzip Sayfer.zip
 
-     pip install -m requirements.txt
+     # cd Sayfer
 
-Terminal orqali python deb yozing
+     # pip install -m requirements.txt
 
-    ubuntu@ubuntu: python3.9
+## Jupyter notebook ni o'rnatish
 
-	>>import nltk
+     # pip install notebook, jupyterlab
+   
+     # jupyter notebook
 
-	nltk.download('punkt')
 
-punkt nltk uchun kerakli paketlardan biri, sayferni sun'iy intelletki va gapirishi uchun kerak bo'ladi, uni alohida nltk ni import qilgan holatda yuqorida ko'rsatilgandek yuklash kerak.
+![Jupyter Notebook](assets/jupyter.png)
+
+Jupyter notebookni browserda ochgandan so'ng, Cell bo'limidan <Run All> ga bosib barcha cell larni ishga tushiriladi, barcha cell lar ishga tushishi uchun biroz vaqt kerak va Sayfer qo'shimcha modellarni internetdan yuklab oladi. Cell lar tugaganda esa dastur avtomat ishga tushadi, Windows paneldan mikrafon ikonkasi chiqishi bilan dasturdan foydalanishiz mumkin.
+
+## Contributions (Hissa qo'shishlar)
+
+**Dasturga hissa qo'shmoqchi bo'lganlar, repo ni fork qilib pull request qilganingizdan keyin o'zgarishlar/optimizatsiyalarni foydasiga qarab main repo ga qo'shib boraman). Hammaga rahmat!**
+
+## Contact (Aloqa)
+
+*Dasturga oid har qanday shikoyatlar, takliflar va g'oyalar uchun.*
+
+[Telegram kanal](https://t.me/sayfer_uzbekistan) <br>
+[Gmail](cyberspyde@gmail.com) <br>
+[Instagram](https://instagram.com/cyberspyde) <br>
+<a href="https://t.me/cyberspyde_admin" target="_blank"> Telegram </a> 
