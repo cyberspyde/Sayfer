@@ -88,7 +88,7 @@
         "Sayfer kim tomonidan qachon yaratilgan?"
       ],
       "responses": [
-        "Sayfer dasturi yaratuvchisi, Sayberspayde niki tagidagi inson 2022 chi yil fevral oyida yaratgan, kimligini bilmoqchi bo'lsangiz google orqali ma'lumot olishingiz mumkim."
+        "Sayfer dasturi yaratuvchisining nomi Sayberspayde, yaratuvchi asl ismini tarqatishni xohlamadi."
       ]
     },
     {
@@ -128,57 +128,6 @@
         "Telegram dasturini ochaman",
         "Telegram ni ochyabman",
         "Telegram dasturini ochyabman"
-      ]
-    },
-    {
-      "tag": "takeKnowledgeNotes",
-      "patterns": [
-        "Ilmiy ma'lumotlarni eslab qol",
-        "Ilmiy ma'lumotni saqlab qo'y",
-        "Ilmiy xabarni eslab qol",
-        "Ilmiy xabarni saqlab qo'y"
-      ],
-      "responses" : [
-        "Ilmiy ma'lumotlarni saqlayman"
-      ]
-    },
-    {
-      "tag": "takeGeneralNotes",
-      "patterns": [
-        "Umumiy ma'lumotlarni eslab qol",
-        "Umumiy ma'lumotni saqlab qo'y",
-        "Umumiy ma'lumotni eslab qol",
-        "Umumiy xabarni saqlab qo'y",
-        "Umumiy xabarni eslab qol"
-      ],
-      "responses": [
-        "Umumiy ma'lumotlarni saqlayman"
-      ]
-    },
-    {
-      "tag": "readKnowledgeNotes",
-      "patterns": [
-        "Bugungi ilmiy ma'lumotlarni aytib ber",
-        "Bugungi ilmiy ma'lumotlar",
-        "Ilmiy ma'lumotlarni aytib ber",
-        "Bugungi ilmiy xabarlarni aytib ber",
-        "Bugungi ilmiy xabarlar"
-      ],
-      "responses": [
-        "Bugungi kiritilgan ilmiy ma'lumotlarni o'qib eshittiraman"
-      ]
-    },
-    {
-      "tag": "readGeneralNotes",
-      "patterns": [
-        "Bugungi umumiy ma'lumotlarni aytib ber",
-        "Umumiy ma'lumotlarni aytib ber",
-        "Umumiy xabarlarni aytib ber",
-        "Bugungi umumiy xabarlar",
-        "Bugungi umimiiy ma'lumotlar"
-      ],
-      "responses": [
-        "Bugungi kiritilgan umumiy ma'lumotlarni o'qib eshittiraman"
       ]
     }
   ]

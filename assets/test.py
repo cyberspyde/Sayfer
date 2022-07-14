@@ -1,6 +1,14 @@
-from transformers import pipeline
+from flask import Flask,request,json
 
-pipe = pipeline("text-classification", model="roberta-large-mnli")
-answer = pipe("Oh my god I love you")
+app = Flask(__name__)
 
-print(answer)
+@app.route('/webhook', methods=['POST'])
+def webhook():
+	if request.method == 'POST':
+		print(request.json)
+		return 'Test Success', 200
+	else:
+		abort(400)
+
+if __name__ == '__main__':
+    app.run(debug=True)
