@@ -43,7 +43,5 @@ Jupyter notebookni browserda ochgandan so'ng, Cell bo'limidan <Run All> ga bosib
 
 *Dasturga oid har qanday shikoyatlar, takliflar va g'oyalar uchun.*
 
-[Telegram kanal](https://t.me/sayfer_uzbekistan) <br>
-[Gmail](cyberspyde@gmail.com) <br>
 [Instagram](https://instagram.com/cyberspyde) <br>
 <a href="https://t.me/cyberspyde_admin" target="_blank"> Telegram </a> 
